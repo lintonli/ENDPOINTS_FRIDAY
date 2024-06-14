@@ -1,0 +1,14 @@
+USE ENDPOINTS
+GO
+CREATE PROCEDURE GetPaginatedProducts
+    @Offset INT,
+    @Limit INT
+AS
+BEGIN
+    SELECT ID, PNAME, PRICE
+    FROM Product
+    ORDER BY ID
+    OFFSET @Offset ROWS
+    FETCH NEXT @Limit ROWS ONLY;
+END;
+

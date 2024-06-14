@@ -1,0 +1,19 @@
+GET  http://localhost:4000/Products
+
+
+
+####
+POST http://localhost:4000/Products
+Content-Type: application/json
+
+{
+    "PNAME":"Gas Cooker",
+    "PRICE":"26000.00"
+}
+
+####
+GET  http://localhost:4000/Products/04eabfc5-b142-4f80-aafc-656833ba4c6d
+
+####
+
+GET  http://localhost:4000/Products/products/page
