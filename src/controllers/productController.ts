@@ -70,3 +70,17 @@ return res.status(200).json(result)
         return res.status(500).json(error)
     }
 }
+export const deleteProduct = async(req:Request<{id:string}>, res:Response)=>{
+    const pool = await mssql.connect(sqlConfig)
+    const prod = (await pool.request()
+    .input("ID", req.params.id)
+    .execute('getProductBYid')).recordset[0] as IProduct;
+
+    if(prod && prod.ID){
+        await pool.request()
+        .input("ID", req.params.id)
+        .execute('deleteProduct')
+        return res.status(200).json({message:"Product deleted successfully"})
+    }
+    return res.status(404).json({message:"Product not found"})
+}
